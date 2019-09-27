@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <script>
+    function computerPlay () {
+      let words = ["Rock", "Paper", "Scissor"];
+      let random = Math.floor(Math.random() * 3);
+      console.log(words[random]);
+    }
+
+    function playRound (playerSelection, computerSelection) {
+
+      let pSelection = playerSelection.toLowerCase();
+      let cSelection = computerSelection.toLowerCase();
+
+      switch (true) {
+        case pSelection == "rock":
+          if (cSelection == "paper") { return "You lose! Paper beats Rock."; }
+          else if (cSelection == "scissors") { return "You win! Rock beats Scissors."; }
+          else { return "You chose the same element! Try again."; }
+          break;
+
+        case pSelection == "paper":
+          if (cSelection == "scissors") { return "You lose! Scissors beat Paper."; }
+          else if (cSelection == "rock") { return "You win! Paper beats Rock."; }
+          else { return "You chose the same element! Try again."; }
+          break;
+        
+        case pSelection == "scissors":
+          if (cSelection == "rock") { return "You lose! Rock beats Scissors"; }
+          else if (cSelection == "paper") { return "You win! Scissors beat Paper."; }
+          else { return "You chose the same element! Try again."; }
+          break;
+
+        default: 
+          return "You seem to have chosen neither Rock, Paper or Scissor. Please choose one.";
+      }
+    }
+  
+  </script>
+</body>
+</html>
