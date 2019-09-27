@@ -1,50 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
-  
+
 
   <script>
-    function computerPlay () {
-      let words = ["Rock", "Paper", "Scissor"];
-      let random = Math.floor(Math.random() * 3);
-      console.log(words[random]);
-    }
+    function game() {
 
-    function playRound (playerSelection, computerSelection) {
+      let pCount = 0;
+      let cCount = 0;
 
-      let pSelection = playerSelection.toLowerCase();
-      let cSelection = computerSelection.toLowerCase();
+      function computerPlay() {
+        let words = ["rock", "paper", "scissors"];
+        let random = Math.floor(Math.random() * 3);
+        return words[random];
+      } 
 
-      switch (true) {
-        case pSelection == "rock":
-          if (cSelection == "paper") { return "You lose! Paper beats Rock."; }
-          else if (cSelection == "scissors") { return "You win! Rock beats Scissors."; }
-          else { return "You chose the same element! Try again."; }
-          break;
+      function playRound(pSelection, cSelection) {
+          switch (true) {
+            case pSelection == "rock":
+              if (cSelection == "paper") { 
+                cCount += 1;
+                return "You lose! Paper beats Rock."; 
+              } else if (cSelection == "scissors") { 
+                pCount += 1;
+                return "You win! Rock beats Scissors."; 
+              } else { 
+                return "You chose the same element! Try again.";   
+              }
+              break;
 
-        case pSelection == "paper":
-          if (cSelection == "scissors") { return "You lose! Scissors beat Paper."; }
-          else if (cSelection == "rock") { return "You win! Paper beats Rock."; }
-          else { return "You chose the same element! Try again."; }
-          break;
-        
-        case pSelection == "scissors":
-          if (cSelection == "rock") { return "You lose! Rock beats Scissors"; }
-          else if (cSelection == "paper") { return "You win! Scissors beat Paper."; }
-          else { return "You chose the same element! Try again."; }
-          break;
+            case pSelection == "paper":
+              if (cSelection == "scissors") {
+                cCount += 1;
+                return "You lose! Scissors beat Paper.";
+              } else if (cSelection == "rock") { 
+                pCount += 1;
+                return "You win! Paper beats Rock."; 
+              } else { 
+                return "You chose the same element! Try again."; 
+              }
+              break;
 
-        default: 
-          return "You seem to have chosen neither Rock, Paper or Scissor. Please choose one.";
+            case pSelection == "scissors":
+              if (cSelection == "rock") {
+                cCount += 1;
+                return "You lose! Rock beats Scissors"; 
+              } else if (cSelection == "paper") {
+                pCount += 1;
+                return "You win! Scissors beat Paper."; 
+              } else { 
+                return "You chose the same element! Try again."; 
+              }
+              break;
+
+            default:
+              return "You seem to have chosen neither Rock, Paper or Scissors. Please choose one.";
+          }
+        }
+
+      alert("Time for a game of Rock Paper Scissors!");
+      //let rounds = prompt("How many rounds do you want to play?");
+
+      for (let i = 1; i <= 5; i++) {
+        let playerSelection = prompt("Please pick your weapon of choice!");
+        if (playerSelection == null) {
+        console.log("Please choose a weapon!");
+        continue;
+        }
+        let pSelection = playerSelection.toLowerCase();
+        let cSelection = computerPlay();
+
+        console.log(`You have picked: ${pSelection}! The computer has picked: ${cSelection}!`);
+      
+        console.log(playRound(pSelection, cSelection));
+        console.log(`The score is: ${pCount} - ${cCount}`);
       }
+
+      if (pCount > cCount) {
+          console.log("Congratulations. You're the winner!") 
+      } else if (pCount == cCount) {
+          console.log("A close tie!");
+      } else { 
+        console.log("Nice try, but the computer won!")
+        }
     }
-  
   </script>
 </body>
+
 </html>
